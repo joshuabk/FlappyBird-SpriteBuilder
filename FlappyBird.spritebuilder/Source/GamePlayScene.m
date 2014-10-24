@@ -17,13 +17,12 @@
 {
     // put update code here
     timeSinceObstacle += delta;
-    if(timeSinceObstacle>10.0)
+    if(timeSinceObstacle>3.0)
     {
         [self addObstacle];
         
         
         timeSinceObstacle = 0.0f;
-        
     }
     
 }

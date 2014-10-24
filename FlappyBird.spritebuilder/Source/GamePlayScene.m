@@ -20,6 +20,8 @@
     if(timeSinceObstacle>10.0)
     {
         [self addObstacle];
+        
+        
         timeSinceObstacle = 0.0f;
         
     }

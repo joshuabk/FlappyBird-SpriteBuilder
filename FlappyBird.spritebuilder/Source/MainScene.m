@@ -198,11 +198,15 @@
         }
     }
     
+    
+    _parallaxBackground.position = ccp(_parallaxBackground.position.x - (character.physicsBody.velocity.x * delta), _parallaxBackground.position.y);
+    
+    
             for (CCNode *bush in _bushes) {
                 // move the bush
-                bush.position = ccp(bush.position.x -
-                                    (character.physicsBody.velocity.x * delta), bush.position.y);
-                
+                CGPoint bushWorldPosition = [_parallaxBackground convertToWorldSpace:bush.position];
+                // get the screen position of the bush
+                CGPoint bushScreenPosition = [self convertToNodeSpace:bushWorldPosition];
                 // if the left corner is one complete width off the screen,
                 // move it to the right
                 if (bush.position.x <= (-1 * bush.contentSize.width)) {
@@ -218,8 +222,9 @@
             // move and loop the clouds
             for (CCNode *cloud in _clouds) {
                 // move the cloud
-                cloud.position = ccp(cloud.position.x -
-                                     (character.physicsBody.velocity.x * delta), cloud.position.y);
+                CGPoint cloudWorldPosition = [_parallaxBackground convertToWorldSpace:cloud.position];
+                // get the screen position of the cloud
+                CGPoint cloudScreenPosition = [self convertToNodeSpace:cloudWorldPosition];
                 
                 // if the left corner is one complete width off the screen,
                 // move it to the right
